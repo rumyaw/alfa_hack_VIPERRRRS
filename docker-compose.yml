@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: alfa-backend
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - PORT=8080
+      - DB_DIR=/app/database
+      - UPLOADS_DIR=/app/uploads
+    volumes:
+      - ./database:/app/database
+      - ./uploads:/app/uploads
+    restart: unless-stopped
+    networks:
+      - alfa-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: alfa-frontend
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - alfa-network
+
+networks:
+  alfa-network:
+    driver: bridge
+
+volumes:
+  database:
+  uploads:
+

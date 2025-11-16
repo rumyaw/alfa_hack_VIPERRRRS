@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+.next/
+out/
+dist/
+build/
+*.exe
+*.test
+*.out
+
+# Database files (но не саму директорию)
+database/*.db
+database/*.db-shm
+database/*.db-wal
+
+# Uploads (но не саму директорию)
+uploads/*/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# .env файл НЕ игнорируем - он нужен для работы проекта!
+# .env
+
+# Local env files (можно игнорировать)
+.env.local
+.env*.local
+
